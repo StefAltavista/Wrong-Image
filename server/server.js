@@ -11,6 +11,6 @@ app.get("*", function (req, res) {
     res.sendFile(path.join(__dirname, "..", "client", "index.html"));
 });
 
-app.listen(process.env.PORT || 3001, function () {
-    console.log("I'm listening.");
+app.listen(process.env.PORT || 5001, function () {
+    console.log("Listening port 5001");
 });
