@@ -1,6 +1,14 @@
 body {
-    background-color: rgb(255, 255, 255);
-    color: lime;
+    font-family: "Share Tech Mono", monospace;
+    /* background-color: rgb(0, 0, 0); */
+    color: rgb(171, 255, 171);
+
+    /* FONTS
+    font-family: "Bungee Hairline", cursive;
+    font-family: "IBM Plex Mono", monospace;
+    font-family: "Share Tech Mono", monospace;
+    font-family: "Stalinist One", cursive;
+     */
 }
 #header {
     background-color: rgb(0, 0, 0);
@@ -13,8 +21,6 @@ body {
 #account {
     width: 60px;
     height: 60px;
-    border: 2px solid lime;
-    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -22,8 +28,6 @@ body {
 #logo {
     width: 60px;
     height: 60px;
-    border: 2px solid lime;
-    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;

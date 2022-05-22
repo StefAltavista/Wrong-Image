@@ -1,92 +1,75 @@
+import destructive from "./algorythms/destructive";
+import liquify from "./algorythms/liquify";
+
+import mosh from "./algorythms/mosh";
+import stainer from "./algorythms/stainer";
+import ripper from "./algorythms/ripper";
+
+import specter from "./algorythms/specter";
+import nylon from "./algorythms/nylon";
+import collateral from "./algorythms/collateral";
+import fragments from "./algorythms/fragments";
+
+var xoff1 = 0;
+var xoff2 = 100;
+
 export default function Glitches(p5) {
     let img;
     let img2;
-    let cnv;
+
     let w;
     let h;
     let c;
+
     p5.preload = () => {
-        img = p5.loadImage("images/flower.jpg");
-        img2 = p5.loadImage("images/autonoma.png");
+        img2 = p5.loadImage("images/bebeWoods.jpg");
+        img = p5.loadImage("images/pangoldNotTrans4.jpg");
     };
 
     p5.setup = () => {
-        w = img.width;
+        img.resize(666, 0);
+        img2.resize(666, img.height);
+        w = 666;
         h = img.height;
-        cnv = p5.createCanvas(w, h + 150);
-        console.log(img);
-        chevron(p5, img, w, h, c);
+        p5.createCanvas(w, h);
     };
-    p5.draw = () => {};
+    p5.draw = () => {
+        p5.background(0);
+        collateral(p5, img, w, h, c);
+
+        p5.noLoop();
+
+        // async function file_canvas() {
+        //     var canvas = document.querySelector("canvas");
+        //     let file = null;
+        //     canvas.toBlob(function (blob) {
+        //         file = new File([blob], "test.png", {
+        //             type: "image/png",
+        //         });
+        //         console.log("file", file);
+        //         let formData = new FormData();
+        //         formData.append("file", file);
+        //         console.log("formData", formData);
+        //         fetch("/saveimage", {
+        //             method: "POST",
+        //             body: formData,
+        //         });
+        //     }, "image/png");
+        // }
+        // file_canvas();
+    };
 }
 
-///////chevron filter////
+////PERLIN NOISER DRAWERS
+function perlinWorm(p5) {
+    var x = p5.noise(xoff1) * 700;
+    var y = p5.noise(xoff2) * 700;
+    var z = p5.noise(y) * 250;
+    xoff1 += 0.005;
+    xoff2 += 0.005;
+    p5.fill(y / 2, (x * z) / 500, x, z + 100);
 
-const shift = (p5, img, w, h, c) => {
-    for (let x = 0; x < w; x += 1) {
-        for (let y = 0; y < h; y += 5) {
-            if (x % 2 == 0) {
-                c = img.get(x, y);
-                p5.push();
-                p5.noFill();
-                p5.stroke(p5.color(c));
-                p5.strokeWeight(1);
-                p5.line(x, y, x + x, Math.sin(x) * 9 + y);
+    p5.stroke(p5.color(x, y, z));
 
-                p5.pop();
-            } else {
-                c = img.get(w - x * Math.random() + y, h - y);
-                p5.stroke(p5.color(c));
-                p5.strokeWeight(1);
-                p5.point(x, y);
-            }
-            c = img.get(x, y);
-        }
-    }
-};
-
-////fragments filter
-const fragments = (p5, img, h, w, c) => {
-    for (let x = 0; x < w; x += 3) {
-        for (let y = 0; y < h; y += 5) {
-            //glitch1
-            if (x % 3 == 0) {
-                c = img.get(x, y);
-                p5.push();
-                p5.noFill();
-                p5.stroke(p5.color(c));
-                p5.strokeWeight(2);
-                p5.line(x * 2, y * 2, x + 10, Math.sin(y) * 900 + y);
-
-                p5.pop();
-            } else if (x % 5 == 0) {
-                c = img.get(x, y);
-                p5.stroke(p5.color(c));
-                p5.strokeWeight(1);
-                p5.rect(x, y * 2, 5, 1);
-            }
-        }
-    }
-};
-
-const chevron = (p5, img, w, h, c) => {
-    for (let x = 0; x < w; x += 10) {
-        for (let y = 0; y < h; y += 1) {
-            if (x % 2 == 0) {
-                c = img.get(x, y);
-                p5.push();
-                p5.noFill();
-                p5.stroke(p5.color(c));
-                p5.strokeWeight(1);
-                p5.line(x, y, x + x, Math.sin(x) * 700);
-                p5.pop();
-            } else {
-                c = img.get(Math.random() * x * 20, h - x);
-                p5.stroke(p5.color(c));
-                p5.strokeWeight(1);
-                p5.rect(x, y);
-            }
-            c = img.get(x, y);
-        }
-    }
-};
+    p5.ellipse(x, y, x - y, y / 50);
+}
