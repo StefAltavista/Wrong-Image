@@ -22,8 +22,8 @@ export default function Glitches(p5) {
     let c;
 
     p5.preload = () => {
-        img2 = p5.loadImage("images/bebeWoods.jpg");
-        img = p5.loadImage("images/pangoldNotTrans4.jpg");
+        img2 = p5.loadImage("images/bebeWatch.jpg");
+        img = p5.loadImage("images/face.png");
     };
 
     p5.setup = () => {
