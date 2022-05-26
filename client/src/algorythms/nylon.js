@@ -2,7 +2,7 @@ const nylon = (p5, img, w, h, c) => {
     let color = "R";
     let divider = 2;
     let start = "xy";
-    let mult = 10;
+    let mult = 500;
 
     for (let x = 0; x < w; x += 5) {
         for (let y = 0; y < h; y += 5) {

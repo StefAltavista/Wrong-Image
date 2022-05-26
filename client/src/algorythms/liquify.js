@@ -1,24 +1,13 @@
 const liquify = (p5, img, w, h, c) => {
-    let orizontal = false;
     for (let x = 0; x < w + 10; x += 1) {
         for (let y = 0; y < h; y += 1) {
             let t = p5.noise(x / 100, y / 100);
             if (t < 0.5) {
-                if (orizontal) {
-                    c = img.get(x, y / t);
-                } else {
-                    c = img.get(x / t, y);
-                }
-
+                c = img.get(x / t, y * t);
                 p5.stroke(p5.color(c));
                 p5.point(x, y);
             } else {
-                if (!orizontal) {
-                    c = img.get(x, y * t);
-                } else {
-                    c = img.get(x * t, y);
-                }
-
+                c = img.get(x * t, y * t);
                 p5.stroke(p5.color(c));
                 p5.point(x, y);
             }
