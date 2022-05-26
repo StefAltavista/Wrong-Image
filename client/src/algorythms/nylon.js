@@ -1,4 +1,4 @@
-const nylon = (p5, img, w, h, c) => {
+const nylon = (p5, img, img2, w, h, c) => {
     let color = "R";
     let divider = 2;
     let start = "xy";

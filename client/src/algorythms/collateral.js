@@ -1,4 +1,4 @@
-const collateral = (p5, img, w, h, c) => {
+const collateral = (p5, img, img2, w, h, c) => {
     let color = false;
     let divider = 1;
     let weight = 12;

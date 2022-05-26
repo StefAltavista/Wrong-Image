@@ -1,15 +1,15 @@
-const specter = (p5, img, w, h, c) => {
+const specter = (p5, img, img2, w, h, c) => {
     let hue;
     let vertical = false;
     let threshold = 300;
     let curve = 20;
     let newImg = p5.createImage(w, h);
+    img = p5.get();
     newImg.loadPixels(newImg);
     let color;
     console.log(newImg);
     p5.colorMode(p5.HSL, 765, 255, 255, 255);
     let t;
-
     for (let x = 0; x < w + 10; x += 1) {
         for (let y = 0; y < h; y += 1) {
             c = img.get(x, y);

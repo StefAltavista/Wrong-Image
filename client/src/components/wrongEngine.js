@@ -8,12 +8,11 @@ import nylon from "../algorythms/nylon";
 import collateral from "../algorythms/collateral";
 import fragments from "../algorythms/fragments";
 import PerlinNoise from "../algorythms/perlinNoise.js";
-import plane from "../algorythms/plane.js";
 var xoff1 = 0;
 var xoff2 = 100;
 
 export default function WrongEngine(p5) {
-    let algorithm = plane;
+    let algorithm = "plane";
     let img;
     let img2;
     let w;
@@ -32,12 +31,13 @@ export default function WrongEngine(p5) {
         w = 666;
         h = img.height;
         p5.createCanvas(w, h);
-        p5.image(img, 0, 0);
-        // p5.render();
+        //p5.image(img, 0, 0);
+        p5.render();
     };
     p5.updateWithProps = (props) => {
         console.log("props", props);
-        if (props.algorithm) {
+
+        if (props.algorithm || props.image) {
             switch (props.algorithm) {
                 case "Destructive":
                     algorithm = destructive;
@@ -67,19 +67,31 @@ export default function WrongEngine(p5) {
                     algorithm = fragments;
                     break;
                 default:
-                    algorithm = plane;
+                    algorithm = "plane";
             }
 
-            console.log("change props", algorithm);
-            p5.render();
+            img = p5.loadImage(props.image, () => {
+                p5.render();
+            });
+            img.resize(666, 0);
+
+            console.log("change props", props);
+            // p5.render();
         }
     };
     p5.render = () => {
-        algorithm(p5, img, w, h, c);
+        if (algorithm == "plane") {
+            console.log("Printing", img);
+            p5.image(img, 0, 0);
+            // return;
+        } else {
+            console.log("RENDER:", img);
+            algorithm(p5, img, img2, w, h, c);
 
-        p5.colorMode(p5.RGB, 255, 255, 255, 255);
-        img = p5.get();
-        p5.noLoop();
+            p5.colorMode(p5.RGB, 255, 255, 255, 255);
+            img = p5.get();
+            p5.noLoop();
+        }
 
         // async function file_canvas() {
         //     var canvas = document.querySelector("canvas");

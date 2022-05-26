@@ -1,4 +1,4 @@
-const fragments = (p5, img, h, w, c) => {
+const fragments = (p5, img, img2, h, w, c) => {
     for (let x = 0; x < w; x += 1) {
         for (let y = 0; y < h; y += 1) {
             let t = p5.noise(x / 100, y / 100);

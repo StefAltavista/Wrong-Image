@@ -1,4 +1,4 @@
-const specter = (p5, img, w, h, c) => {
+const specter = (p5, img, img2, w, h, c) => {
     let hue;
     let vertical = false;
     let threshold = 300;
