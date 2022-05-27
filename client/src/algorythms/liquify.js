@@ -1,24 +1,23 @@
-const liquify = (p5, img, img2, w, h, c) => {
-    for (let x = 0; x < w + 10; x += 1) {
+const liquify = (p5, img, img2, w, h, c, params) => {
+    let px = 200 * (params.px / 100);
+    let py = 200 * (params.px / 100);
+    img = p5.get();
+    let newImg = p5.createImage(w, h);
+    newImg.loadPixels(newImg);
+    p5.pixelDensity(1);
+    for (let x = 0; x < w; x += 1) {
         for (let y = 0; y < h; y += 1) {
-            let t = p5.noise(x / 100, y / 100);
+            let t = p5.noise(x / px, y / py);
             if (t < 0.5) {
                 c = img.get(x / t, y * t);
-                p5.stroke(p5.color(c));
-                p5.point(x, y);
             } else {
                 c = img.get(x * t, y * t);
-                p5.stroke(p5.color(c));
-                p5.point(x, y);
             }
-
-            // c = img.get(x * (t / 2), y);
-            // p5.colorMode(p5.RGB, 255, 255, 255, 255);
-
-            // p5.stroke(c[0], c[1], c[2], c[3]);
-            // p5.point(x, y);
+            newImg.set(x, y, p5.color(c));
         }
     }
+    newImg.updatePixels();
+    p5.image(newImg, 0, 0);
 };
 
 export default liquify;

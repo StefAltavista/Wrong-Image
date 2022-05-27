@@ -4,6 +4,7 @@ const compression = require("compression");
 const path = require("path");
 // set up multer
 const multer = require("multer");
+const { uploadFile } = require("./uploadFile");
 
 const uidSafe = require("uid-safe");
 const storage = multer.diskStorage({
@@ -24,11 +25,11 @@ app.use(compression());
 
 app.use(express.static(path.join(__dirname, "..", "client", "public")));
 
-app.post("/saveimage", uploader.single("file"), function (req, res) {
-    console.log(req.body);
+app.post("/saveimage", uploader.single("file"), uploadFile, (req, res) => {
+    res.json(req.file);
 });
 
-app.get("*", function (req, res) {
+app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "..", "client", "index.html"));
 });
 

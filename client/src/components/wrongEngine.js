@@ -18,27 +18,41 @@ export default function WrongEngine(p5) {
     let w;
     let h;
     let c;
+    let params = {};
+    let canvas;
+    let imgDflt;
     p5.preload = () => {
-        img = p5.loadImage("images/bebeWatch.jpg");
-        img2 = p5.loadImage("images/face.png");
-        img.resize(666, 0);
+        imgDflt = p5.loadImage("images/bebeWatch.jpg");
+        imgDflt.resize(666, 0);
+        img = imgDflt;
+
+        //img2 = p5.loadImage("images/face.png");
+
         //img2.resize(666, img.height);
     };
     p5.setup = () => {
-        console.log(p5);
-        p5.background(0);
+        console.log("def=", imgDflt, img);
+        p5.background(220, 141, 155);
         p5.pixelDensity(1);
         w = 666;
         h = img.height;
-        p5.createCanvas(w, h);
-        //p5.image(img, 0, 0);
+        canvas = p5.createCanvas(w, h);
         p5.render();
     };
     p5.updateWithProps = (props) => {
         console.log("props", props);
+        if (props.reset) {
+            algorithm = "plane";
+            img = p5.loadImage(props.image, () => {
+                img.resize(666, 0);
+                p5.image(img, 0, 0);
+                return;
+            });
+        }
 
-        if (props.algorithm || props.image) {
-            switch (props.algorithm) {
+        if (props.parameters) {
+            params = { ...props.parameters };
+            switch (props.parameters.algorithm) {
                 case "Destructive":
                     algorithm = destructive;
                     break;
@@ -69,48 +83,45 @@ export default function WrongEngine(p5) {
                 default:
                     algorithm = "plane";
             }
-
+            p5.render();
+            return;
+        }
+        if (props.image) {
+            p5.remove(img);
             img = p5.loadImage(props.image, () => {
+                img.resize(666, 0);
+                p5.remove(canvas);
+                p5.createCanvas(666, img.height);
                 p5.render();
+                return;
             });
-            img.resize(666, 0);
+        } else {
+            p5.remove(img);
+            console.log("no img1: default=", imgDflt);
+            img = imgDflt;
+        }
+        if (props.imageTwo) {
+            p5.remove(img2);
+            img2 = p5.loadImage(props.imageTwo, () => {
+                img2.resize(666, 0);
 
-            console.log("change props", props);
-            // p5.render();
+                return;
+            });
+        } else {
+            p5.remove(img2);
         }
     };
     p5.render = () => {
         if (algorithm == "plane") {
-            console.log("Printing", img);
             p5.image(img, 0, 0);
-            // return;
         } else {
             console.log("RENDER:", img);
-            algorithm(p5, img, img2, w, h, c);
+            algorithm(p5, img, img2, w, h, c, params);
 
             p5.colorMode(p5.RGB, 255, 255, 255, 255);
             img = p5.get();
-            p5.noLoop();
         }
-
-        // async function file_canvas() {
-        //     var canvas = document.querySelector("canvas");
-        //     let file = null;
-        //     canvas.toBlob(function (blob) {
-        //         file = new File([blob], "test.png", {
-        //             type: "image/png",
-        //         });
-        //         console.log("file", file);
-        //         let formData = new FormData();
-        //         formData.append("file", file);
-        //         console.log("formData", formData);
-        //         fetch("/saveimage", {
-        //             method: "POST",
-        //             body: formData,
-        //         });
-        //     }, "image/png");
-        // }
-        // file_canvas();
+        p5.noLoop();
     };
 }
 

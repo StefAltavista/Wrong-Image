@@ -3,6 +3,8 @@ const specter = (p5, img, img2, w, h, c) => {
     let vertical = false;
     let threshold = 300;
     let curve = 20;
+    let sx = 200;
+    let sy = 200;
     let newImg = p5.createImage(w, h);
     img = p5.get();
     newImg.loadPixels(newImg);
@@ -13,7 +15,7 @@ const specter = (p5, img, img2, w, h, c) => {
     for (let x = 0; x < w + 10; x += 1) {
         for (let y = 0; y < h; y += 1) {
             c = img.get(x, y);
-            t = p5.noise(x / 100, y / 100);
+            t = p5.noise(x / sx, y / sy);
             hue = c[0] + c[1] + c[2];
             if (hue < threshold) {
                 hue += curve;
