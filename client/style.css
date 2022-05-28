@@ -150,7 +150,6 @@ button:hover {
     width: 180px;
     margin-left: 50px;
     margin-right: 5px;
-    overflow: scroll;
 }
 #meta_text {
     font-size: 9px;

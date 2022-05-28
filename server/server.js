@@ -2,9 +2,11 @@ const express = require("express");
 const app = express();
 const compression = require("compression");
 const path = require("path");
+const fs = require("fs");
 // set up multer
 const multer = require("multer");
 const { uploadFile } = require("./uploadFile");
+const { uploadMetadata } = require("./uploadMetadata");
 
 const uidSafe = require("uid-safe");
 const storage = multer.diskStorage({
@@ -20,13 +22,21 @@ const storage = multer.diskStorage({
 });
 const uploader = multer({ storage });
 app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
 app.use(compression());
 
 app.use(express.static(path.join(__dirname, "..", "client", "public")));
 
-app.post("/saveimage", uploader.single("file"), uploadFile, (req, res) => {
-    res.json(req.file);
+app.post("/api/upload_file", uploader.single("file"), async (req, res) => {
+    let link = await uploadFile(req, res);
+    res.json(link);
+});
+app.post("/api/upload_metadata", async (req, res) => {
+    console.log("UPLOAD META _BODY:", req.body);
+    let response = await uploadMetadata(JSON.stringify(req.body));
+
+    res.json(response);
 });
 
 app.get("*", (req, res) => {

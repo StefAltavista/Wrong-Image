@@ -1,8 +1,7 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
 import ImgEditor from "./components/imgEditor";
 import SideBar from "./components/sideBar";
 import Saved from "./components/saved.js";
+import MyGallery from "./components/myGallery.js";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 export default function App() {
@@ -17,8 +16,8 @@ export default function App() {
                     <SideBar />
                     <Routes>
                         <Route path="/saved" element={<Saved />} />
-
                         <Route path="/imgeditor" element={<ImgEditor />} />
+                        <Route path="/gallery" element={<MyGallery />} />
                     </Routes>
                 </div>
             </div>
