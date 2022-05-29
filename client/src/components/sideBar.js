@@ -3,19 +3,22 @@ import { Link } from "react-router-dom";
 export default function SideBar() {
     return (
         <div id="sideBar">
-            <Link to="/news">
+            <Link to="/home">
                 <div className="sideBarLink">
-                    <p className="arrow"> {">"} </p> <p>NEwz oN W/I</p>
+                    <p className="arrow"> {"> "} </p>
+                    <p> H_ome</p>
                 </div>
             </Link>
             <Link to="/gallery">
                 <div className="sideBarLink">
-                    <p className="arrow"> {">"} </p> <p>YoUR GaLlery</p>
+                    <p className="arrow"> {">"} </p>
+                    <p> YoUR GaLlery</p>
                 </div>
             </Link>
             <a href="/imgeditor">
                 <div className="sideBarLink">
-                    <p className="arrow"> {">"} </p> <p>WroNg/ImagE EdiTor</p>
+                    <p className="arrow"> {">"} </p>
+                    <p> WroNg/ImagE EdiTor</p>
                 </div>
             </a>
 

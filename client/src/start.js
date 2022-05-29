@@ -1,20 +1,21 @@
 import ReactDOM from "react-dom";
-import Log_In from "./logIn";
+import App from "./app";
 
 //redux set-up
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
-import rootReducer from "./redux/reducer.js";
+import reducer from "./redux/reducer.js";
+import { composeWithDevTools } from "redux-devtools-extension";
 import * as immutableState from "redux-immutable-state-invariant";
 
 const store = createStore(
-    rootReducer,
-    applyMiddleware(immutableState.default())
+    reducer,
+    composeWithDevTools(applyMiddleware(immutableState.default()))
 );
 
 let login = (
     <Provider store={store}>
-        <Log_In />
+        <App />
     </Provider>
 );
 

@@ -1,11 +1,14 @@
 import { ReactP5Wrapper } from "react-p5-wrapper";
-import { useState, useEffect, useRef, useCallback } from "react";
-import WrongEngine from "./wrongEngine.js";
+import { useState, useEffect, useRef } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { ImgSaver, ImgDownloader } from "./imgSaver.js";
 import switchComands from "./switchComands";
-import { useNavigate } from "react-router-dom";
+import WrongEngine from "./wrongEngine.js";
+
 let count = 1;
 export default function () {
+    const account = useSelector((state) => state.account);
     useEffect(() => {
         // location.reload();
     }, []);
@@ -20,7 +23,6 @@ export default function () {
     const [imgTwo, setImgTwo] = useState();
 
     const [info, setInfo] = useState();
-    const [title, setTitle] = useState("Wrong/Image");
 
     const [reset, setReset] = useState();
     const [plus, setPlus] = useState();
@@ -51,8 +53,14 @@ export default function () {
         setParameters(params);
     };
     const save = () => {
-        setInfo(true);
-        console.log({ metadata });
+        if (account.wallet) {
+            setInfo(true);
+            console.log({ metadata });
+        } else {
+            alert(
+                "you must connect with your wallet in order to save this picture"
+            );
+        }
     };
 
     const addInfo = (e) => {
@@ -73,7 +81,7 @@ export default function () {
             },
         };
         setInfo(false);
-        ImgSaver(meta);
+        ImgSaver(meta, account);
         navigate("../saved", { state: { meta } }), [navigate];
     };
     const abort = () => {
