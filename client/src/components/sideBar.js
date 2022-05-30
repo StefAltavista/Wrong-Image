@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function SideBar() {
+    const account = useSelector((state) => state.account);
     return (
         <div id="sideBar">
             <Link to="/home">
@@ -9,7 +11,7 @@ export default function SideBar() {
                     <p> H_ome</p>
                 </div>
             </Link>
-            <Link to="/gallery">
+            <Link to={`/gallery/${account.wallet}`}>
                 <div className="sideBarLink">
                     <p className="arrow"> {">"} </p>
                     <p> YoUR GaLlery</p>

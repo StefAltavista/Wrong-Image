@@ -22,7 +22,7 @@ export default function Log_In() {
                     eth.request({ method: "eth_accounts" })
                         .then((accounts) => {
                             dispatch(accountCheckIn(accounts[0]));
-                            console.log();
+                            console.log(accounts[0]);
                         })
                         .catch((err) => {
                             console.error(err);

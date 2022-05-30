@@ -26,7 +26,7 @@ export default function Home() {
                     <p>{">"} Store in decentralized database</p>
                     <p>{">"} Mint single NFT or collections </p>
                 </div>
-                <img src={random} />
+                <img src="/img_resources/violetRay.png" />
             </div>
             <div className="section2">
                 <p>

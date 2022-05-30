@@ -3,6 +3,9 @@ const app = express();
 const compression = require("compression");
 const path = require("path");
 const db = require("../database/db.js");
+const nft = require("./NFTPortApi");
+const IPFS = (...args) =>
+    import("ipfs-core").then(({ default: ipfs }) => ipfs(...args));
 
 // set up multer
 const multer = require("multer");
@@ -43,10 +46,29 @@ app.post("/api/insertNft", (req, res) => {
     console.log(req);
     db.insertNft(req.body).then(({ rows }) => res.json(rows));
 });
+app.post("/api/getNft", (req, res) => {
+    console.log(req);
+    db.getNft(req.body).then(({ rows }) => res.json(rows));
+});
 
 app.get("/api/wrongnfts", (req, res) => {
     db.selectAll().then(({ rows }) => res.json(rows));
 });
+app.post("/api/walletGallery", (req, res) => {
+    console.log(req.body);
+    db.selectWallet(req.body).then(({ rows }) => {
+        console.log(rows);
+        res.json(rows);
+    });
+});
+app.post("/api/getElsedNft", (req, res) => {
+    console.log("SERVER", req.body);
+    nft.getNfts(req).then((result) => {
+        console.log("from Server", result);
+        res.json(result);
+    });
+});
+
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "..", "client", "index.html"));
 });

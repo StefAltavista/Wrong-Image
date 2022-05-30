@@ -23,4 +23,8 @@ const insertNft = ({ creator, image_URL, metadata_URL }) =>
         `INSERT INTO nfts(creator,image_URL,metadata_URL) VALUES ($1,$2,$3)`,
         [creator, image_URL, metadata_URL]
     );
-module.exports = { selectAll, insertNft };
+const getNft = ({ id }) => db.query(`SELECT * FROM nfts WHERE id=$1`, [id]);
+const selectWallet = ({ walletAddress }) =>
+    db.query(`SELECT * FROM nfts WHERE creator=$1`, [walletAddress]);
+
+module.exports = { selectAll, insertNft, selectWallet, getNft };
