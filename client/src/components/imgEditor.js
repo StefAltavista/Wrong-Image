@@ -1,17 +1,21 @@
 import { ReactP5Wrapper } from "react-p5-wrapper";
 import { useState, useEffect, useRef } from "react";
-import { useSelector } from "react-redux";
+
 import { useNavigate } from "react-router-dom";
 import { ImgSaver, ImgDownloader } from "./imgSaver.js";
+import Loading from "./loading.js";
 import switchComands from "./switchComands";
 import WrongEngine from "./wrongEngine.js";
 
+import { useDispatch, useSelector } from "react-redux";
+import { loading } from "../redux/loading/slice";
+import { loaded } from "../redux/loading/slice";
+
 let count = 1;
 export default function () {
+    const dispatch = useDispatch();
     const account = useSelector((state) => state.account);
-    useEffect(() => {
-        // location.reload();
-    }, []);
+    const { busy } = useSelector((state) => state.loading);
     const navigate = useNavigate();
 
     const [metadata, setMetadata] = useState({});
@@ -24,7 +28,7 @@ export default function () {
 
     const [info, setInfo] = useState();
 
-    const [reset, setReset] = useState();
+    const [reset, setReset] = useState(false);
     const [plus, setPlus] = useState();
 
     const [comandPan, setComandPan] = useState(
@@ -63,7 +67,7 @@ export default function () {
         }
     };
 
-    const addInfo = (e) => {
+    const addInfo = async (e) => {
         e.preventDefault();
         console.log(e.target.title.value);
         setMetadata({
@@ -81,8 +85,11 @@ export default function () {
             },
         };
         setInfo(false);
-        ImgSaver(meta, account);
-        navigate("../saved", { state: { meta } }), [navigate];
+        dispatch(loading());
+        ImgSaver(meta, account).then(() => {
+            dispatch(loaded());
+            navigate(`/gallery/${account.wallet}`);
+        });
     };
     const abort = () => {
         setInfo(false);
@@ -146,6 +153,7 @@ export default function () {
 
     return (
         <>
+            {busy && <Loading />}
             {info && (
                 <div id="info">
                     <form id="formInfo" onSubmit={addInfo}>
@@ -187,6 +195,7 @@ export default function () {
                         image={imgOne}
                         imageTwo={imgTwo}
                         reset={reset}
+                        dispatch={dispatch}
                     />
                 </div>
                 <div id="imagePanel">

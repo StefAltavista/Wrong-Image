@@ -37,17 +37,15 @@ app.post("/api/upload_file", uploader.single("file"), async (req, res) => {
     res.json(link);
 });
 app.post("/api/upload_metadata", async (req, res) => {
-    console.log("UPLOAD META _BODY:", req.body);
     let response = await uploadMetadata(JSON.stringify(req.body));
-
     res.json(response);
 });
 app.post("/api/insertNft", (req, res) => {
-    console.log(req);
+    // console.log(req);
     db.insertNft(req.body).then(({ rows }) => res.json(rows));
 });
 app.post("/api/getNft", (req, res) => {
-    console.log(req);
+    //console.log(req);
     db.getNft(req.body).then(({ rows }) => res.json(rows));
 });
 
@@ -55,18 +53,29 @@ app.get("/api/wrongnfts", (req, res) => {
     db.selectAll().then(({ rows }) => res.json(rows));
 });
 app.post("/api/walletGallery", (req, res) => {
-    console.log(req.body);
+    //console.log(req.body);
     db.selectWallet(req.body).then(({ rows }) => {
         console.log(rows);
         res.json(rows);
     });
 });
 app.post("/api/getElsedNft", (req, res) => {
-    console.log("SERVER", req.body);
+    //console.log("SERVER", req.body);
     nft.getNfts(req).then((result) => {
         console.log("from Server", result);
         res.json(result);
     });
+});
+app.post("/api/mint", async (req, res) => {
+    console.log("SERVER imgID:", req.body.id);
+    db.setMinted(req.body.id);
+    res.json({ response: "OK", chain: "rinkeby" });
+    //MINTING DISABLED
+    // const response = await nft.mintNft(req);
+    // if (response.response === "OK") {
+    //     db.setMinted(req.body.id);
+    // }
+    // res.json(response);
 });
 
 app.get("*", (req, res) => {

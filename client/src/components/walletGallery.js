@@ -134,7 +134,19 @@ export default function WalletGallery() {
                                 >
                                     <p>{nft.name}</p>
                                     <img src={nft.image} />
-                                    <p>{nft.description}</p>
+                                    <p className="description">
+                                        {nft.description.substring(0, 50) +
+                                            "..."}
+                                    </p>
+                                    {nft.minted ? (
+                                        <p id="mint" className="minted">
+                                            minted
+                                        </p>
+                                    ) : (
+                                        <p id="mint" className="notMinted">
+                                            not minted
+                                        </p>
+                                    )}
                                 </div>
                             );
                         })}

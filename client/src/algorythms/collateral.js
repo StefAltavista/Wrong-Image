@@ -31,9 +31,9 @@
 // export default collateral;
 const collateral = (p5, img, img2, w, h, c, params) => {
     let weight = 10 * (params.weight / 100);
-    let px = 10000 * (params.px / 100) * Math.random();
-    let py = 10000 * (params.py / 100);
-    let density = 20 * (params.density / 100);
+    let px = 10 * params.px;
+    let py = 10 * params.py;
+    let density = 2 * params.density;
 
     for (let x = 0; x < w; x += density) {
         for (let y = 0; y < h; y += density) {
@@ -45,5 +45,6 @@ const collateral = (p5, img, img2, w, h, c, params) => {
             p5.rect(x, y, y / t, x + y);
         }
     }
+    return "done";
 };
 export default collateral;

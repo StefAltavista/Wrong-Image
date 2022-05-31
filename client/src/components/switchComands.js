@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 function switchComands(algorithm) {
     let comands;
     switch (algorithm) {
@@ -5,13 +6,33 @@ function switchComands(algorithm) {
             comands = (
                 <div id="algorithmsComands">
                     <p>Weight</p>
-                    <input type="range" id="inputRange" name="weight"></input>
+                    <input
+                        type="range"
+                        min="1"
+                        id="inputRange"
+                        name="weight"
+                    ></input>
                     <p>Density</p>
-                    <input type="range" id="inputRange" name="density"></input>
+                    <input
+                        type="range"
+                        min="1"
+                        id="inputRange"
+                        name="density"
+                    ></input>
                     <p>Px</p>
-                    <input type="range" id="inputRange" name="px"></input>
+                    <input
+                        type="range"
+                        min="1"
+                        id="inputRange"
+                        name="px"
+                    ></input>
                     <p>Px</p>
-                    <input type="range" id="inputRange" name="py"></input>
+                    <input
+                        type="range"
+                        min="1"
+                        id="inputRange"
+                        name="py"
+                    ></input>
                 </div>
             );
             break;
@@ -23,9 +44,15 @@ function switchComands(algorithm) {
                         type="range"
                         id="inputRange"
                         name="threshold"
+                        min="1"
                     ></input>
                     <p>Curve</p>
-                    <input type="range" id="inputRange" name="curve"></input>
+                    <input
+                        type="range"
+                        min="1"
+                        id="inputRange"
+                        name="curve"
+                    ></input>
                     <p>Conditional</p>
                     <input
                         type="range"
@@ -39,9 +66,19 @@ function switchComands(algorithm) {
             comands = (
                 <div id="algorithmsComands">
                     <p>Px</p>
-                    <input type="range" id="inputRange" name="px"></input>
+                    <input
+                        type="range"
+                        min="1"
+                        id="inputRange"
+                        name="px"
+                    ></input>
                     <p>Py</p>
-                    <input type="range" id="inputRange" name="py"></input>
+                    <input
+                        type="range"
+                        min="1"
+                        id="inputRange"
+                        name="py"
+                    ></input>
                 </div>
             );
             break;
@@ -53,6 +90,7 @@ function switchComands(algorithm) {
                         type="range"
                         id="inputRange"
                         name="multiplier"
+                        min="1"
                     ></input>
                     <fieldset>
                         <legend>Mode</legend>
@@ -88,7 +126,12 @@ function switchComands(algorithm) {
                         </div>
                     </fieldset>
                     <p>Divider</p>
-                    <input type="range" id="inputRange" name="divider"></input>
+                    <input
+                        type="range"
+                        min="1"
+                        id="inputRange"
+                        name="divider"
+                    ></input>
 
                     <fieldset>
                         <legend>Color</legend>
@@ -119,13 +162,29 @@ function switchComands(algorithm) {
                         type="range"
                         id="inputRange"
                         name="threshold"
+                        min="1"
                     ></input>
                     <p>Curve</p>
-                    <input type="range" id="inputRange" name="Curve"></input>
+                    <input
+                        type="range"
+                        min="1"
+                        id="inputRange"
+                        name="Curve"
+                    ></input>
                     <p>Px</p>
-                    <input type="range" id="inputRange" name="px"></input>
+                    <input
+                        type="range"
+                        min="1"
+                        id="inputRange"
+                        name="px"
+                    ></input>
                     <p>Py</p>
-                    <input type="range" id="inputRange" name="py"></input>
+                    <input
+                        type="range"
+                        min="1"
+                        id="inputRange"
+                        name="py"
+                    ></input>
                 </div>
             );
             break;

@@ -20,6 +20,7 @@ const destructive = (p5, img, img2, w, h, c) => {
             c = img.get(x, y);
         }
     }
+    return "done";
 };
 
 export default destructive;

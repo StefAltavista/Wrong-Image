@@ -20,6 +20,7 @@ const stainer = (p5, img, img2, w, h, c) => {
             // }
         }
     }
+    return "done";
 };
 
 export default stainer;

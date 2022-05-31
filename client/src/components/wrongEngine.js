@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import destructive from "../algorythms/destructive";
 import liquify from "../algorythms/liquify";
 import mosh from "../algorythms/mosh";
@@ -8,10 +9,12 @@ import nylon from "../algorythms/nylon";
 import collateral from "../algorythms/collateral";
 import fragments from "../algorythms/fragments";
 import PerlinNoise from "../algorythms/perlinNoise.js";
+import { loading } from "../redux/loading/slice";
+import { loaded } from "../redux/loading/slice";
 var xoff1 = 0;
 var xoff2 = 100;
 
-export default function WrongEngine(p5) {
+export default async function WrongEngine(p5) {
     let algorithm = "plane";
     let img;
     let img2;
@@ -21,17 +24,18 @@ export default function WrongEngine(p5) {
     let params = {};
     let canvas;
     let imgDflt;
+    let setup = true;
     p5.preload = () => {
         imgDflt = p5.loadImage("images/bebeWatch.jpg");
         imgDflt.resize(666, 0);
         img = imgDflt;
 
-        //img2 = p5.loadImage("images/face.png");
+        img2 = p5.loadImage("images/face.png");
 
-        //img2.resize(666, img.height);
+        img2.resize(666, img.height);
     };
     p5.setup = () => {
-        console.log("def=", imgDflt, img);
+        // console.log("def=", imgDflt, img);
         p5.background(220, 141, 155);
         p5.pixelDensity(1);
         w = 666;
@@ -40,17 +44,19 @@ export default function WrongEngine(p5) {
         p5.render();
     };
     p5.updateWithProps = (props) => {
-        console.log("props", props);
+        if (!setup) props.dispatch(loading());
         if (props.reset) {
+            console.log("reset");
             algorithm = "plane";
             img = p5.loadImage(props.image, () => {
                 img.resize(666, 0);
-                p5.image(img, 0, 0);
+                p5.render(props.dispatch);
                 return;
             });
         }
 
         if (props.parameters) {
+            console.log("PARAM change");
             params = { ...props.parameters };
             switch (props.parameters.algorithm) {
                 case "Destructive":
@@ -83,45 +89,55 @@ export default function WrongEngine(p5) {
                 default:
                     algorithm = "plane";
             }
-            p5.render();
+            props.parameters = null;
+            p5.render(props.dispatch);
+
             return;
         }
         if (props.image) {
+            console.log("change image");
             p5.remove(img);
             img = p5.loadImage(props.image, () => {
                 img.resize(666, 0);
                 p5.remove(canvas);
                 p5.createCanvas(666, img.height);
-                p5.render();
+                p5.image(img, 0, 0);
+                props.dispatch(loaded());
+                props.image = null;
                 return;
             });
         } else {
             p5.remove(img);
-            console.log("no img1: default=", imgDflt);
+            //console.log("no img1: default=", imgDflt);
             img = imgDflt;
         }
         if (props.imageTwo) {
             p5.remove(img2);
             img2 = p5.loadImage(props.imageTwo, () => {
                 img2.resize(666, 0);
-
+                props.imageTwo = null;
                 return;
             });
         } else {
             p5.remove(img2);
         }
     };
-    p5.render = () => {
+    p5.render = (dispatch) => {
         if (algorithm == "plane") {
             p5.image(img, 0, 0);
         } else {
-            console.log("RENDER:", img);
-            algorithm(p5, img, img2, w, h, c, params);
+            // console.log("RENDER:", img);
+            let done = algorithm(p5, img, img2, w, h, c, params);
+            if (done) {
+                console.log("done");
+                dispatch(loaded());
+            }
 
             p5.colorMode(p5.RGB, 255, 255, 255, 255);
             img = p5.get();
         }
         p5.noLoop();
+        setup = false;
     };
 }
 

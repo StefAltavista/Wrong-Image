@@ -1,6 +1,5 @@
 import ImgEditor from "./components/imgEditor";
 import SideBar from "./components/sideBar";
-import Saved from "./components/saved.js";
 import WalletGallery from "./components/walletGallery.js";
 import NavBar from "./components/navBar";
 import Home from "./home";
@@ -19,7 +18,7 @@ export default function App() {
                     <SideBar />
                     <Routes>
                         <Route path="/home" element={<Home />} />
-                        <Route path="/saved" element={<Saved />} />
+
                         <Route path="/imgeditor" element={<ImgEditor />} />
                         <Route
                             path="/gallery/:walletAddress"

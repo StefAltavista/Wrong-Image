@@ -3,7 +3,7 @@ body {
     font-family: "Share Tech Mono", monospace;
     background-color: rgb(0, 0, 0);
     /* color: rgb(171, 255, 171); */
-    color: rgb(220, 4, 4);
+    color: rgb(249, 138, 138);
 
     /* FONTS
     font-family: "Bungee Hairline", cursive;
@@ -14,7 +14,9 @@ body {
 }
 a {
     text-decoration: none;
+    color: rgb(170, 218, 170);
 }
+
 button {
     width: 80px;
     padding: 5px;
@@ -52,7 +54,7 @@ li {
 }
 .accountButton {
     width: 120px;
-    background-color: #66b367;
+    background-color: #70ff70;
     color: #000000;
     cursor: pointer;
     overflow: hidden;
@@ -84,7 +86,7 @@ li {
     margin-left: 10px;
     position: fixed;
     /* color: rgb(75, 255, 75);  */
-    color: rgb(208, 91, 91);
+    color: rgb(249, 138, 138);
     background-color: rgba(86, 86, 86, 0.25);
     display: flex;
     flex-direction: column;
@@ -92,17 +94,19 @@ li {
     width: 27px;
     height: 100%;
     overflow: hidden;
-    transition: 500ms;
+    transition: 300ms;
+    /* transition-timing-function: linear; */
 }
 #sideBar:hover {
     width: 200px;
     padding: 20px;
     background-color: #000000;
-    border-right: 1px solid pink;
+    border-right: 1px solid rgb(145, 154, 145);
+    /* box-shadow: 500px 12px 30px 700px rgba(0, 0, 0, 0.4); */
 }
 #sideBar p {
     padding-left: 10px;
-    color: rgb(208, 91, 91);
+    color: rgb(249, 138, 138);
 }
 
 #sideBar div {
@@ -350,6 +354,15 @@ input[type="range"]::-webkit-slider-thumb {
     border-right: 1px solid black;
     padding-left: 10px;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#gallery nav div select {
+    padding-left: 10px;
+    margin-left: 10px;
+    background-color: transparent;
+    color: rgb(99, 97, 97);
 }
 
 #gallery nav div:hover {
@@ -360,6 +373,7 @@ input[type="range"]::-webkit-slider-thumb {
 
 #nfts {
     display: flex;
+    justify-content: center;
     flex-direction: row;
     flex-wrap: wrap;
 }
@@ -369,11 +383,126 @@ input[type="range"]::-webkit-slider-thumb {
     margin-bottom: 50px;
     padding: 20px;
     text-align: center;
-    border: 1px solid white;
+    border: 1px solid rgb(75, 75, 75);
     cursor: pointer;
 }
 #displayNft img {
     width: 400px;
     height: 400px;
     object-fit: scale-down;
+}
+#displayNft .description {
+    font-size: 12px;
+}
+
+#mint {
+    color: #000000;
+    font-size: 11px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+}
+.minted {
+    background-color: #70ff70;
+}
+.notMinted {
+    background-color: crimson;
+}
+
+#singleNft {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+}
+#singleNft label {
+    color: black;
+    background-color: rgb(171, 255, 171);
+    font-size: 12px;
+    width: 200px;
+}
+#singleNft p {
+    color: rgb(171, 255, 171);
+}
+
+#singleImg {
+    width: 550px;
+    height: 550px;
+    border: 1px solid rgb(75, 75, 75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#singleNft img {
+    width: 500px;
+    height: 500px;
+    object-fit: scale-down;
+}
+#singleInfo {
+    margin-left: 100px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 200px;
+    padding-right: 40px;
+}
+#yes {
+    color: rgb(170, 218, 170);
+}
+#no {
+    color: rgb(212, 117, 117);
+}
+#copyToClipboard {
+    cursor: pointer;
+}
+.hidden {
+    position: absolute;
+    visibility: hidden;
+}
+.hidden:hover {
+    visibility: visible;
+}
+
+#loading {
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    background-color: #0000007b;
+    color: rgb(190, 254, 177);
+}
+#turn {
+    animation-name: rotate;
+    animation-duration: 700ms;
+    animation-iteration-count: infinite;
+
+    width: 70px;
+    height: 70px;
+    border: 10px solid rgb(190, 254, 177);
+    margin-bottom: 20px;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(90deg);
+    }
+}
+#congratulations {
+    background-color: #80ec92;
+}
+#congratulations p {
+    color: #000000;
 }

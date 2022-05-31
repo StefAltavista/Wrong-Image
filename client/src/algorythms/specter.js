@@ -34,6 +34,7 @@ const specter = (p5, img, img2, w, h, c) => {
     newImg.updatePixels();
     // return newImg;
     p5.image(newImg, 0, 0);
+    return "done";
 };
 
 export default specter;

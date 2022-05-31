@@ -32,6 +32,7 @@ const nylon = (p5, img, img2, w, h, c, params) => {
             }
         }
     }
+    return "done";
 };
 
 export default nylon;

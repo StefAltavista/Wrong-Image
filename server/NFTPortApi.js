@@ -45,6 +45,32 @@ const getNfts = (req) => {
         });
 };
 
+const mintNft = async (req) => {
+    const { contractAddress, contractChain, walletAddress, metadata_url } =
+        req.body;
+    console.log(contractAddress, contractChain, walletAddress, metadata_url);
+
+    const url = "https://api.nftport.xyz/v0/mints/customizable";
+
+    const options = {
+        headers: {
+            Authorization: NFTPORT.NFT_PORT_KEY,
+            "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify({
+            chain: contractChain,
+            contract_address: contractAddress,
+            metadata_uri: metadata_url,
+            mint_to_address: walletAddress,
+        }),
+    };
+    const response = await fetch(url, options).then((res) => res.json());
+
+    return response;
+};
+
 module.exports = {
     getNfts,
+    mintNft,
 };

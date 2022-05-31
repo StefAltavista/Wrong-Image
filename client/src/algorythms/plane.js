@@ -6,6 +6,7 @@ const plane = (p5, img, img2, w, h, c) => {
             p5.point(x, y);
         }
     }
+    return "done";
 };
 
 export default plane;
