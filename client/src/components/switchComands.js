@@ -171,6 +171,28 @@ function switchComands(algorithm) {
                         id="inputRange"
                         name="Curve"
                     ></input>
+                    <fieldset>
+                        <legend>Direction</legend>
+
+                        <div>
+                            <input
+                                type="radio"
+                                name="direction"
+                                value="orizontal"
+                                checked
+                            />
+                            <label>Orizontal</label>
+                        </div>
+
+                        <div>
+                            <input
+                                type="radio"
+                                name="direction"
+                                value="vertical"
+                            />
+                            <label>Vertical</label>
+                        </div>
+                    </fieldset>
                     <p>Px</p>
                     <input
                         type="range"
@@ -184,6 +206,47 @@ function switchComands(algorithm) {
                         min="1"
                         id="inputRange"
                         name="py"
+                    ></input>
+                </div>
+            );
+            break;
+        case "Ripper":
+            comands = (
+                <div id="algorithmsComands">
+                    <fieldset>
+                        <legend>Direction</legend>
+
+                        <div>
+                            <input
+                                type="radio"
+                                name="direction"
+                                value="orizontal"
+                                defaultChecked
+                            />
+                            <label>Orizontal</label>
+                        </div>
+
+                        <div>
+                            <input
+                                type="radio"
+                                name="direction"
+                                value="vertical"
+                            />
+                            <label>Vertical</label>
+                        </div>
+                    </fieldset>
+                </div>
+            );
+            break;
+        case "Mosh":
+            comands = (
+                <div id="algorithmsComands">
+                    <p>Ratio</p>
+                    <input
+                        type="range"
+                        id="inputRange"
+                        name="ratio"
+                        min="1"
                     ></input>
                 </div>
             );

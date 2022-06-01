@@ -1,21 +1,22 @@
-const specter = (p5, img, img2, w, h, c) => {
+const specter = (p5, img, img2, w, h, c, params) => {
     let hue;
-    let vertical = false;
-    let threshold = 300;
-    let curve = 20;
-    let sx = 200;
-    let sy = 200;
+    let vertical;
+    params.direction == "vertical" ? (vertical = true) : (vertical = false);
+
+    let threshold = 750 * (params.threshold / 100);
+    let curve = 75 * params.threshold;
+    let px = 200 * (params.threshold / 100);
+    let py = 200 * (params.threshold / 100);
     let newImg = p5.createImage(w, h);
-    img = p5.get();
+    //img = p5.get();
     newImg.loadPixels(newImg);
     let color;
-    console.log(newImg);
     p5.colorMode(p5.HSL, 765, 255, 255, 255);
     let t;
     for (let x = 0; x < w + 10; x += 1) {
         for (let y = 0; y < h; y += 1) {
             c = img.get(x, y);
-            t = p5.noise(x / sx, y / sy);
+            t = p5.noise(x / px, y / py);
             hue = c[0] + c[1] + c[2];
             if (hue < threshold) {
                 hue += curve;
@@ -32,7 +33,6 @@ const specter = (p5, img, img2, w, h, c) => {
         }
     }
     newImg.updatePixels();
-    // return newImg;
     p5.image(newImg, 0, 0);
     return "done";
 };

@@ -18,30 +18,30 @@ export default function () {
     const { busy } = useSelector((state) => state.loading);
     const navigate = useNavigate();
 
+    const [update, setUpdate] = useState();
     const [metadata, setMetadata] = useState({});
-    const elemRef = useRef();
     const [parameters, setParameters] = useState();
     const [readImgOne, setReadImgOne] = useState();
     const [readImgTwo, setReadImgTwo] = useState();
     const [imgOne, setImgOne] = useState();
     const [imgTwo, setImgTwo] = useState();
-
     const [info, setInfo] = useState();
-
     const [reset, setReset] = useState(false);
     const [plus, setPlus] = useState();
-
     const [comandPan, setComandPan] = useState(
         <div id="algorithmsComands"></div>
     );
+    const elemRef = useRef();
 
     const changeAlgo = (e) => {
         let comands = switchComands(e.target.value);
         setComandPan(comands);
     };
     const render = (e) => {
+        dispatch(loading());
         e.preventDefault();
         let params = {};
+        setUpdate("algorithm");
         e.target.forEach((x) => {
             if (x.name) {
                 if (x.type == "radio" && !x.checked) {
@@ -56,6 +56,74 @@ export default function () {
         count += 1;
         setParameters(params);
     };
+
+    //READ IMAGE ONE
+    const readFileOne = (e) => {
+        console.log(e.target.files[0]);
+        setReadImgOne(e.target.files[0]);
+        setMetadata({ Base_Image: e.target.files[0].name, ...metadata });
+    };
+
+    useEffect(() => {
+        if (readImgOne) {
+            dispatch(loading());
+            const reader = new FileReader();
+            reader.readAsDataURL(readImgOne);
+            reader.onloadend = () => {
+                setImgOne(reader.result);
+                setUpdate("addImageOne");
+            };
+        } else {
+            setImgOne(null);
+        }
+    }, [readImgOne]);
+
+    const deleteOne = () => {
+        dispatch(loading());
+        setImgOne(null);
+        setUpdate("deleteImageOne");
+    };
+
+    const addImg = () => {
+        setPlus(true);
+    };
+
+    //READ IMAGE TWO
+    const readFileTwo = (e) => {
+        dispatch(loading());
+        setReadImgTwo(e.target.files[0]);
+    };
+
+    useEffect(() => {
+        if (readImgTwo) {
+            const reader = new FileReader();
+            reader.readAsDataURL(readImgTwo);
+            reader.onloadend = () => {
+                setImgTwo(reader.result);
+                setUpdate("addImageTwo");
+            };
+        } else {
+            setImgTwo(null);
+        }
+    }, [readImgTwo]);
+
+    const deleteTwo = () => {
+        dispatch(loading());
+        setImgTwo(null);
+        setPlus(false);
+        setUpdate("deleteImageTwo");
+    };
+
+    const resetCanvas = () => {
+        setUpdate("resetCanvas");
+    };
+    useEffect(() => {
+        if (!busy) {
+            console.log("updateBUSY", busy, "update:", update);
+            setUpdate(null);
+        }
+    }, [busy]);
+    //Saving
     const save = () => {
         if (account.wallet) {
             setInfo(true);
@@ -93,61 +161,6 @@ export default function () {
     };
     const abort = () => {
         setInfo(false);
-    };
-
-    //READ IMAGE ONE
-    const readFileOne = (e) => {
-        console.log(e.target.files[0]);
-        setReadImgOne(e.target.files[0]);
-        setMetadata({ Base_Image: e.target.files[0].name, ...metadata });
-    };
-
-    useEffect(() => {
-        if (readImgOne) {
-            const reader = new FileReader();
-            reader.readAsDataURL(readImgOne);
-            reader.onloadend = () => {
-                setImgOne(reader.result);
-            };
-        } else {
-            setImgOne(null);
-        }
-    }, [readImgOne]);
-
-    const deleteOne = () => {
-        console.log("delete img One");
-        setImgOne(null);
-    };
-
-    const addImg = () => {
-        setPlus(true);
-    };
-
-    //READ IMAGE TWO
-    const readFileTwo = (e) => {
-        console.log(e.target.files[0]);
-        setReadImgTwo(e.target.files[0]);
-    };
-
-    useEffect(() => {
-        if (readImgTwo) {
-            const reader = new FileReader();
-            reader.readAsDataURL(readImgTwo);
-            reader.onloadend = () => {
-                setImgTwo(reader.result);
-            };
-        } else {
-            setImgTwo(null);
-        }
-    }, [readImgTwo]);
-    const deleteTwo = () => {
-        console.log("delete img One");
-        setImgTwo(null);
-        setPlus(false);
-    };
-
-    const resetCanvas = () => {
-        setReset(!reset);
     };
     //JSX
 
@@ -189,12 +202,12 @@ export default function () {
                 </div>
                 <div id="imgPreview">
                     <ReactP5Wrapper
+                        id="canvas"
                         sketch={WrongEngine}
                         parameters={parameters}
-                        id="canvas"
                         image={imgOne}
                         imageTwo={imgTwo}
-                        reset={reset}
+                        update={update}
                         dispatch={dispatch}
                     />
                 </div>

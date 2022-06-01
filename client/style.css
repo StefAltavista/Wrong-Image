@@ -279,9 +279,9 @@ textarea:focus {
     margin-left: 20px;
     display: flex;
     justify-content: center;
-    width: 777;
+    width: 777px;
     min-height: 777px;
-    object-fit: cover;
+    object-fit: scale-down;
     overflow: hidden;
     /* justify-self: center; */
 }
