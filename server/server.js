@@ -69,13 +69,16 @@ app.post("/api/getElsedNft", (req, res) => {
 app.post("/api/mint", async (req, res) => {
     console.log("SERVER imgID:", req.body.id);
     db.setMinted(req.body.id);
-    res.json({ response: "OK", chain: "rinkeby" });
-    //MINTING DISABLED
-    // const response = await nft.mintNft(req);
-    // if (response.response === "OK") {
-    //     db.setMinted(req.body.id);
-    // }
-    // res.json(response);
+    // res.json({ response: "OK", chain: "rinkeby" });
+    // MINTING ENABLED!
+    const response = await nft.mintNft(req);
+    if (response.response === "OK") {
+        db.setMinted(req.body.id);
+        db.saveTransaction(req.body.id, response.transaction_external_url);
+    }
+
+    console.log(response);
+    res.json(response);
 });
 
 app.get("*", (req, res) => {

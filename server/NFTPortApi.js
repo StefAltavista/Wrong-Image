@@ -66,7 +66,7 @@ const mintNft = async (req) => {
         }),
     };
     const response = await fetch(url, options).then((res) => res.json());
-
+    console.log("response in method nftport:", response);
     return response;
 };
 

@@ -43,4 +43,18 @@ const selectWallet = ({ walletAddress }) => {
     );
 };
 
-module.exports = { selectAll, insertNft, selectWallet, getNft, setMinted };
+const saveTransaction = (id, transaction_external_url) => {
+    return db.query(
+        `INSERT INTO transactions(nft_id,transaction_external_url) VALUES ($1,$2)`,
+        [id, transaction_external_url]
+    );
+};
+
+module.exports = {
+    selectAll,
+    insertNft,
+    selectWallet,
+    getNft,
+    setMinted,
+    saveTransaction,
+};

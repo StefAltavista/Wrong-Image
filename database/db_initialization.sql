@@ -9,6 +9,13 @@ CREATE TABLE nfts(
 );
 
 
+CREATE TABLE transactions(
+    id                          SERIAL PRIMARY KEY,
+    nft_id                      VARCHAR,
+    transaction_external_url    VARCHAR,
+    created_at                  TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 
 
 

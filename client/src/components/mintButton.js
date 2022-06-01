@@ -82,6 +82,11 @@ export default function MintButton(props) {
                         {name} is now an NFT on the {response.chain} chain!
                     </p>
                     <p>Response: {JSON.stringify(response, "", 4)}</p>
+                    <p id="transactionLink">
+                        <a href={response.transaction_external_url}>
+                            SEE TRANSACTION
+                        </a>
+                    </p>
                 </div>
             )}
         </>

@@ -179,7 +179,7 @@ function switchComands(algorithm) {
                                 type="radio"
                                 name="direction"
                                 value="orizontal"
-                                checked
+                                defaultChecked
                             />
                             <label>Orizontal</label>
                         </div>

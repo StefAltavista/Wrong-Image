@@ -267,8 +267,9 @@ export default function () {
                             name="algorithm"
                             id="algorithmInput"
                             onChange={changeAlgo}
+                            defaultValue="Plane"
                         >
-                            <option value="Plane" disabled selected>
+                            <option value="Plane" disabled>
                                 Select...
                             </option>
                             <option value="Collateral">Collateral</option>
