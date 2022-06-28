@@ -28,10 +28,10 @@ export default async function WrongEngine(p5) {
 
     //-----------------------------------load default function------------------------------------//
     p5.preload = () => {
-        imgDflt = p5.loadImage("images/bebeWatch.jpg");
+        imgDflt = p5.loadImage("images/default1.png");
         imgDflt.resize(500, 0);
         img = imgDflt;
-        img2 = p5.loadImage("images/face.png");
+        img2 = p5.loadImage("images/default.png");
         img2.resize(500, img.height);
     };
 

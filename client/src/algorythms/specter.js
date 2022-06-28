@@ -3,10 +3,10 @@ const specter = (p5, img, img2, w, h, c, params) => {
     let vertical;
     params.direction == "vertical" ? (vertical = true) : (vertical = false);
 
-    let threshold = 750 * (params.threshold / 100);
-    let curve = 75 * params.threshold;
-    let px = 200 * (params.threshold / 100);
-    let py = 200 * (params.threshold / 100);
+    let threshold = 350 * (params.threshold / 100);
+    let curve = 25 * params.threshold;
+    let px = 1000 * (params.px / 100);
+    let py = 1000 * (params.py / 100);
     let newImg = p5.createImage(w, h);
     //img = p5.get();
     newImg.loadPixels(newImg);

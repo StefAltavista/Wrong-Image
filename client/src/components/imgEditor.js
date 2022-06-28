@@ -274,7 +274,7 @@ export default function () {
                             </option>
                             <option value="Collateral">Collateral</option>
                             <option value="Destructive">Destructive</option>
-                            <option value="Fragments">Fragments</option>
+                            <option value="Fragments">Crystal</option>
                             <option value="Liquify">Liquify</option>
                             <option value="Nylon">Nylon</option>
                             <option value="Specter">Specter (pro)</option>

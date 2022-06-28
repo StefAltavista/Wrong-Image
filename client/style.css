@@ -367,7 +367,7 @@ textarea:focus {
     margin-left: 20px;
     display: flex;
     justify-content: center;
-    width: 600px;
+    width: 500px;
     /* min-height: 777px; */
     object-fit: scale-down;
     overflow: hidden;
