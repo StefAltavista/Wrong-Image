@@ -19,21 +19,22 @@ module.exports = () => ({
         contentBase: path.join(__dirname, "client", "public"),
         proxy: {
             "/": {
-                target: "http://localhost:3001",
+                target: "http://localhost:5001",
             },
             "/socket.io": {
-                target: "http://localhost:3001",
+                target: "http://localhost:5001",
                 ws: true,
             },
         },
-        port: "3000",
+        port: "5000",
     },
     module: {
         rules: [
             {
                 test: /\.js$/,
                 loader: "babel-loader",
-            }, {
+            },
+            {
                 test: /\.css$/i,
                 use: [
                     MiniCssExtractPlugin.loader,
@@ -55,7 +56,9 @@ module.exports = () => ({
     resolve: {
         extensions: [".tsx", ".ts", ".js"],
     },
-    plugins: [new MiniCssExtractPlugin({
-        filename: 'bundle.css',
-    })],
+    plugins: [
+        new MiniCssExtractPlugin({
+            filename: "bundle.css",
+        }),
+    ],
 });
