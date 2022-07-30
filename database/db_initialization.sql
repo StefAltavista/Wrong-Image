@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS transactions;
 DROP TABLE IF EXISTS nfts;
 CREATE TABLE nfts(
     id              SERIAL PRIMARY KEY,

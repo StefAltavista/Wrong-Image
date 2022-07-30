@@ -1,4 +1,13 @@
-const NFTPORT = require("../config.json");
+// const NFTPORT = require("../config.json");
+
+let NFTPORT;
+
+if (process.env.NODE_ENV == "production") {
+    NFTPORT = process.env.SESSION_SECRET;
+} else {
+    NFTPORT = require("../config.json");
+}
+
 const fetch = (...args) =>
     import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
