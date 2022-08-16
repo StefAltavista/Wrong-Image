@@ -4,8 +4,8 @@ const compression = require("compression");
 const path = require("path");
 const db = require("../database/db.js");
 const nft = require("./NFTPortApi");
-const IPFS = (...args) =>
-    import("ipfs-core").then(({ default: ipfs }) => ipfs(...args));
+// const IPFS = (...args) =>
+//     import("ipfs-core").then(({ default: ipfs }) => ipfs(...args));
 
 // set up multer
 const multer = require("multer");

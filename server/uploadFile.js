@@ -40,6 +40,7 @@ module.exports.uploadFile = (req, res) => {
         .then((responseJson) => {
             // Handle the response
             console.log("IPFS RESPONSE: ", responseJson);
+            fs.unlink(path, () => {});
             return responseJson;
         });
 };
