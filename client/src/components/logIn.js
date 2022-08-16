@@ -42,14 +42,22 @@ export default function Log_In() {
             });
         } else {
             console.log("no Metamask installed");
+
+            return;
         }
     }, []);
 
     async function getAccount() {
-        const accounts = await eth.request({
-            method: "eth_requestAccounts",
-        });
-        dispatch(accountCheckIn(accounts[0]));
+        if (eth) {
+            const accounts = await eth.request({
+                method: "eth_requestAccounts",
+            });
+            dispatch(accountCheckIn(accounts[0]));
+        } else {
+            alert(
+                "You need to install Metamask to connect your wallet to Wrong Image"
+            );
+        }
     }
     function disconnect() {
         //deactivate();
