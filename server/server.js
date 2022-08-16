@@ -41,11 +41,9 @@ app.post("/api/upload_metadata", async (req, res) => {
     res.json(response);
 });
 app.post("/api/insertNft", (req, res) => {
-    // console.log(req);
     db.insertNft(req.body).then(({ rows }) => res.json(rows));
 });
 app.post("/api/getNft", (req, res) => {
-    //console.log(req);
     db.getNft(req.body).then(({ rows }) => res.json(rows));
 });
 

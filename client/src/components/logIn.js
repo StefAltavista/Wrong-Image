@@ -40,10 +40,6 @@ export default function Log_In() {
             eth.on("disconnect", () => {
                 dispatch(accountCheckOut());
             });
-        } else {
-            console.log("no Metamask installed");
-
-            return;
         }
     }, []);
 

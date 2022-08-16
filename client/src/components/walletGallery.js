@@ -76,21 +76,25 @@ export default function WalletGallery() {
             });
     }, [walletAddress, chain]);
 
-    const getElse = (type) => {
-        fetch("/api/getElseNft", {
-            headers: { "content-type": "application/json" },
-            method: "POST",
-            body: JSON.stringify({ walletAddress, type }),
-        })
-            .then((res) => res.json())
-            .then((found) => {
-                if (!found) {
-                    setElseGallery(false);
-                } else if (!found[0]) {
-                    setElseGallery(false);
-                } else setElseGallery(found);
-            });
-    };
+    // GET NFT FROM BLOCKCHAIN
+    // WORKING
+    // NOT AVAILABLE IN THIS VERSION
+    //
+    // const getElse = (type) => {
+    //     fetch("/api/getElseNft", {
+    //         headers: { "content-type": "application/json" },
+    //         method: "POST",
+    //         body: JSON.stringify({ walletAddress, type }),
+    //     })
+    //         .then((res) => res.json())
+    //         .then((found) => {
+    //             if (!found) {
+    //                 setElseGallery(false);
+    //             } else if (!found[0]) {
+    //                 setElseGallery(false);
+    //             } else setElseGallery(found);
+    //         });
+    // };
 
     const goToNft = (nft) => {
         navigate(`../nft/${nft.id}`, { state: { nft } }), [navigate];
@@ -122,7 +126,7 @@ export default function WalletGallery() {
                 </div>
             </nav>
             <div id="fromWrong" className="nfts">
-                <p>From Wrong/Image</p>
+                <p>From Wrong/Image Database</p>
                 {wrongGallery ? (
                     <div id="nfts">
                         {wrongGallery.map((nft) => {
@@ -155,6 +159,11 @@ export default function WalletGallery() {
                     <p>Nothing here yet</p>
                 )}
             </div>
+            {/* 
+            GET NFT FROM BLOCKCHAIN
+            WORKING
+            NOT AVAILABLE IN THIS VERSION
+            
             <div id="fromElse" className="nfts">
                 <p>From Anywhere Else</p>
                 {elseGallery ? (
@@ -191,7 +200,7 @@ export default function WalletGallery() {
                 ) : (
                     <p>Nothing here yet</p>
                 )}
-            </div>
+            </div> */}
         </div>
     );
 }

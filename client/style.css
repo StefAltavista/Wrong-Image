@@ -467,6 +467,8 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 #displayNft {
+    width: 250px;
+    height: auto;
     margin-right: 100px;
     margin-bottom: 50px;
     padding: 20px;
@@ -475,8 +477,8 @@ input[type="range"]::-webkit-slider-thumb {
     cursor: pointer;
 }
 #displayNft img {
-    width: 400px;
-    height: 400px;
+    width: 250px;
+    height: 250px;
     object-fit: scale-down;
 }
 #displayNft .description {
