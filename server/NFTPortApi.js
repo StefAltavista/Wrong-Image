@@ -43,7 +43,7 @@ const getNfts = (req) => {
                             })
                                 .then((res) => res.json())
                                 .then((response) => resolve(response));
-                        }, idx * 500);
+                        }, idx * 400);
                     });
                 });
                 console.log(promises);

@@ -469,7 +469,7 @@ input[type="range"]::-webkit-slider-thumb {
 #displayNft {
     width: 250px;
     height: auto;
-    margin-right: 100px;
+    margin-right: 50px;
     margin-bottom: 50px;
     padding: 20px;
     text-align: center;

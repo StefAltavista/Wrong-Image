@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import MintButton from "./mintButton.js";
+import WorkinProgress from "./WorkinProgress.js";
 // import * as IPFS from "ipfs-core";
 
 export default function Nft() {
@@ -13,29 +14,30 @@ export default function Nft() {
     let url;
 
     useEffect(() => {
-        fetch("/api/getNft", {
-            headers: { "content-type": "application/json" },
-            method: "POST",
-            body: JSON.stringify({ id }),
-        })
-            .then((res) => res.json())
-            .then((x) => {
-                url =
-                    x[0].metadata_url.replace("ipfs", "http") +
-                    ".ipfs.dweb.link";
-                fetch(url)
-                    .then((res) => res.json())
-                    .then((metadata) => {
-                        setMeta(metadata);
-                        console.log(metadata);
-                    });
-                setNft(x[0]);
-            });
+        // fetch("/api/getNft", {
+        //     headers: { "content-type": "application/json" },
+        //     method: "POST",
+        //     body: JSON.stringify({ id }),
+        // })
+        //     .then((res) => res.json())
+        //     .then((x) => {
+        //         url =
+        //             x[0].metadata_url.replace("ipfs", "http") +
+        //             ".ipfs.dweb.link";
+        //         fetch(url)
+        //             .then((res) => res.json())
+        //             .then((metadata) => {
+        //                 setMeta(metadata);
+        //                 console.log(metadata);
+        //             });
+        //         setNft(x[0]);
+        //     });
     }, []);
 
     return (
         <>
-            {nft && meta && (
+            <WorkinProgress></WorkinProgress>
+            {/* {nft && meta && (
                 <div id="singleNft">
                     <div id="singleInfo">
                         <label>Name:</label>
@@ -97,7 +99,7 @@ export default function Nft() {
                         <img src={nft.image_url}></img>
                     </div>
                 </div>
-            )}
+            )} */}
         </>
     );
 }

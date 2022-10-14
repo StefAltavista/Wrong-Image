@@ -168,11 +168,14 @@ export default function WalletGallery() {
                 {wrongGallery ? (
                     <div id="nfts">
                         {wrongGallery.map((nft, idx) => {
+                            if (nft.name.includes("AIRDROP")) {
+                                return null;
+                            }
                             return nft ? (
                                 <div
                                     id="displayNft"
                                     key={idx}
-                                    // onClick={() => goToNft(nft)}
+                                    onClick={() => goToNft(nft)}
                                 >
                                     <p>{nft.name}</p>
                                     <img src={nft.image} />

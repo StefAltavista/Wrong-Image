@@ -1,19 +1,4 @@
-import { useEffect, useState } from "react";
 export default function Home() {
-    const [random, setRandom] = useState("");
-    const [recent, setRecent] = useState("");
-
-    useEffect(() => {
-        //fetch imgs from db
-        fetch("/api/wrongnfts")
-            .then((res) => res.json())
-            .then((imgs) => {
-                console.log(imgs);
-
-                setRandom(imgs[2].image_url);
-            });
-    }, []);
-
     return (
         <div id="home">
             <div id="title">
@@ -76,7 +61,7 @@ export default function Home() {
                 <img id="footerImg" src="/img_resources/section4.png" />
                 <h1>W R O N G / I M A G E</h1>
             </div>
-            <p id="copyright">S U N D S 2022 &copy;</p>
+            <p id="copyright">STEFANO ALTAVISTA 2022 &copy;</p>
         </div>
     );
 }

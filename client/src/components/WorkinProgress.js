@@ -7,7 +7,7 @@ export default function () {
                 margin: "auto auto",
             }}
         >
-            <img src="images/logo.png" />
+            <img src="/images/logo.png" />
             <p>
                 You are running the beta version of Wrong Image <br></br>This
                 page is currently not available
