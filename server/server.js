@@ -58,7 +58,7 @@ app.post("/api/walletGallery", (req, res) => {
     });
 });
 app.post("/api/getElsedNft", (req, res) => {
-    //console.log("SERVER", req.body);
+    console.log("SERVER", req.body);
     nft.getNfts(req).then((result) => {
         console.log("from Server", result);
         res.json(result);

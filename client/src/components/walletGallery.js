@@ -79,22 +79,22 @@ export default function WalletGallery() {
     // GET NFT FROM BLOCKCHAIN
     // WORKING
     // NOT AVAILABLE IN THIS VERSION
-    //
-    // const getElse = (type) => {
-    //     fetch("/api/getElseNft", {
-    //         headers: { "content-type": "application/json" },
-    //         method: "POST",
-    //         body: JSON.stringify({ walletAddress, type }),
-    //     })
-    //         .then((res) => res.json())
-    //         .then((found) => {
-    //             if (!found) {
-    //                 setElseGallery(false);
-    //             } else if (!found[0]) {
-    //                 setElseGallery(false);
-    //             } else setElseGallery(found);
-    //         });
-    // };
+
+    const getElse = (type) => {
+        fetch("/api/getElseNft", {
+            headers: { "content-type": "application/json" },
+            method: "POST",
+            body: JSON.stringify({ walletAddress, type }),
+        })
+            .then((res) => res.json())
+            .then((found) => {
+                if (!found) {
+                    setElseGallery(false);
+                } else if (!found[0]) {
+                    setElseGallery(false);
+                } else setElseGallery(found);
+            });
+    };
 
     const goToNft = (nft) => {
         navigate(`../nft/${nft.id}`, { state: { nft } }), [navigate];
