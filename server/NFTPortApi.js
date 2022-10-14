@@ -1,11 +1,11 @@
 // const NFTPORT = require("../config.json");
 
-let NFTPORT;
+let NFT_PORT_KEY;
 
 if (process.env.NODE_ENV == "production") {
-    NFTPORT = process.env.SESSION_SECRET;
+    NFT_PORT_KEY = process.env.NFT_PORT_KEY;
 } else {
-    NFTPORT = require("../config.json");
+    NFT_PORT_KEY = require("../config.json").NFT_PORT_KEY;
 }
 
 const fetch = (...args) =>
@@ -21,7 +21,7 @@ const getNfts = (req) => {
     }
     return fetch(url, {
         headers: {
-            Authorization: NFTPORT.NFT_PORT_KEY,
+            Authorization: NFT_PORT_KEY,
             "Content-Type": "application/json",
         },
         method: "GET",
@@ -36,7 +36,7 @@ const getNfts = (req) => {
                             console.log(url);
                             fetch(url, {
                                 headers: {
-                                    Authorization: NFTPORT.NFT_PORT_KEY,
+                                    Authorization: NFT_PORT_KEY,
                                     "Content-Type": "application/json",
                                 },
                                 method: "GET",

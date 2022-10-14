@@ -14,14 +14,11 @@ export default function WalletGallery() {
     const load = useSelector((state) => state.loading.busy);
 
     useEffect(() => {
-        console.log(walletAddress);
-        console.log(load);
         if (
             walletAddress &&
             walletAddress != "undefined" &&
             walletAddress != "null"
         ) {
-            console.log("FUCKYO!", walletAddress);
             dispatch(loading());
             fetch("/api/walletGallery", {
                 headers: { "content-type": "application/json" },
