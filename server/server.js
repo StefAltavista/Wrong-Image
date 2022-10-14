@@ -51,14 +51,19 @@ app.get("/api/wrongnfts", (req, res) => {
     db.selectAll().then(({ rows }) => res.json(rows));
 });
 app.post("/api/walletGallery", (req, res) => {
-    //console.log(req.body);
-    db.selectWallet(req.body).then(({ rows }) => {
-        console.log(rows);
-        res.json(rows);
+    console.log("Owner Wallet Req");
+
+    nft.getNfts(req).then((result) => {
+        console.log("from Server", result.length);
+        res.json(result);
     });
+    // db.selectWallet(req.body).then(({ rows }) => {
+    //     console.log(rows);
+    //     res.json(rows);
+    // });
 });
 app.post("/api/getElsedNft", (req, res) => {
-    console.log("SERVER", req.body);
+    console.log("ELSE SERVER", req.body);
     nft.getNfts(req).then((result) => {
         console.log("from Server", result);
         res.json(result);

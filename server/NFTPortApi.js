@@ -28,23 +28,29 @@ const getNfts = (req) => {
     })
         .then((result) => result.json())
         .then(async (arr) => {
-            console.log("from method arr:", arr);
-
-            if (arr.nfts[0]) {
+            if (arr && arr.nfts[0]) {
                 let promises = arr.nfts.map((x, idx) => {
-                    url = `https://api.nftport.xyz/v0/nfts/${x.contract_address}/${x.token_id}?chain=${req.body.chain}`;
-                    if (idx < 2) {
-                        return fetch(url, {
-                            headers: {
-                                Authorization: NFTPORT.NFT_PORT_KEY,
-                                "Content-Type": "application/json",
-                            },
-                            method: "GET",
-                        }).then((res) => res.json());
-                    } else return;
+                    return new Promise((resolve, rej) => {
+                        setTimeout(() => {
+                            url = `https://api.nftport.xyz/v0/nfts/${x.contract_address}/${x.token_id}?chain=${req.body.chain}`;
+                            console.log(url);
+                            fetch(url, {
+                                headers: {
+                                    Authorization: NFTPORT.NFT_PORT_KEY,
+                                    "Content-Type": "application/json",
+                                },
+                                method: "GET",
+                            })
+                                .then((res) => res.json())
+                                .then((response) => resolve(response));
+                        }, idx * 500);
+                    });
                 });
-                let nfts = await Promise.all([promises[0], promises[1]]);
-                console.log("from method nfts:", nfts);
+                console.log(promises);
+
+                let nfts = await Promise.all(promises);
+                console.log("from method nfts:", nfts.length);
+                nfts.map((x) => console.log(x.nft.metadata.name));
                 return nfts;
             } else return null;
         })
