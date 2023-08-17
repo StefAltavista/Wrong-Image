@@ -66,7 +66,10 @@ export default function WalletGallery() {
                         dispatch(loaded());
                     }
                 });
-        }
+        } else
+            alert(
+                "You Must connect to your wallet in order to retrieve your NFTS from the blockchain"
+            );
 
         // fetch("/api/getElsedNft", {
         //     headers: { "content-type": "application/json" },

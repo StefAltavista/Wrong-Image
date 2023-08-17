@@ -80,6 +80,8 @@ li {
     display: flex;
     justify-content: flex-start;
     height: 100%;
+    flex-wrap: wrap;
+    width: 90vw;
 }
 
 #sideBar {
@@ -87,7 +89,7 @@ li {
     position: fixed;
     /* color: rgb(75, 255, 75);  */
     color: rgb(252, 173, 173);
-    background-color: rgba(86, 86, 86, 0.25);
+    background-color: rgb(35, 35, 35);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -95,13 +97,14 @@ li {
     height: 100%;
     overflow: hidden;
     transition: 300ms;
+    z-index: 3;
     /* transition-timing-function: linear; */
 }
 #sideBar:hover {
     width: 200px;
     padding: 20px;
     background-color: #000000;
-    border-right: 1px solid rgb(145, 154, 145);
+    border-right: 2px solid rgb(145, 154, 145);
     /* box-shadow: 500px 12px 30px 700px rgba(0, 0, 0, 0.4); */
 }
 #sideBar p {
@@ -130,14 +133,18 @@ li {
     padding-right: 100px;
     display: flex;
     flex-direction: column;
+    width: 100vw;
 }
 #home #title {
+    width: 80%;
+    display: flex;
     padding: 0;
     color: rgb(242, 108, 108);
     height: 300px;
     font-size: 60px;
-    /* background-color: #000000; */
     margin-bottom: 100px;
+    flex-wrap: wrap;
+    z-index: 2;
 }
 
 #home .section {
@@ -155,7 +162,7 @@ li {
     z-index: 0;
 }
 #frontImage {
-    position: absolute;
+    /* position: absolute; */
     top: 250px;
     right: 60px;
     z-index: 0;
@@ -263,6 +270,11 @@ li {
     border-left: 1px solid rgb(33, 33, 33);
     justify-self: flex-end;
     padding-left: 20px;
+}
+
+.selectImages {
+    display: flex;
+    flex-direction: column;
 }
 #storeImg {
     position: absolute;

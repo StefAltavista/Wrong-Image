@@ -4,8 +4,7 @@ export default function Home() {
     return (
         <div id="home">
             <div id="title">
-                <p>Generative Art / Image manipulator</p>
-                <p> NFT Minter</p>
+                <p>Glitch Art Generator / NFT Minter</p>
             </div>
             <div className="section">
                 <div>

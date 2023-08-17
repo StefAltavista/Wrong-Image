@@ -15,14 +15,13 @@ module.exports = {
         new MiniCssExtractPlugin(),
     ],
     devServer: {
-        static: path.join(__dirname, "client"),
         proxy: {
             "/": {
-                target: "http://localhost:5005",
+                target: "https://wrong-image.art",
+                changeOrigin: true,
             },
-            secure: false, // had an expression which was resolving to true
-            changeOrigin: true,
         },
+
         port: "5000",
     },
 

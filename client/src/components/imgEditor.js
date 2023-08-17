@@ -38,24 +38,37 @@ export default function () {
         let comands = switchComands(e.target.value);
         setComandPan(comands);
     };
-    const render = (e) => {
-        dispatch(loading());
+    const render = async (e) => {
         e.preventDefault();
-        let params = {};
-        setUpdate("algorithm");
-        e.target.forEach((x) => {
-            if (x.name) {
-                if (x.type == "radio" && !x.checked) {
-                    return;
-                }
-                params = { ...params, [x.name]: x.value };
-            }
-        });
+        dispatch(loading());
 
-        setMetadata({ ...metadata, ["Machine_" + count]: { ...params } });
-        elemRef.current.scrollIntoView(false);
-        count += 1;
-        setParameters(params);
+        const promise = new Promise(
+            (
+                resolve //allows loading to start
+            ) =>
+                setTimeout(() => {
+                    let params = {};
+                    setUpdate("algorithm");
+                    e.target.forEach((x) => {
+                        if (x.name) {
+                            if (x.type == "radio" && !x.checked) {
+                                return;
+                            }
+                            params = { ...params, [x.name]: x.value };
+                        }
+                    });
+
+                    setMetadata({
+                        ...metadata,
+                        ["Machine_" + count]: { ...params },
+                    });
+                    elemRef.current.scrollIntoView(false);
+                    count += 1;
+                    setParameters(params);
+                    resolve();
+                }, 10)
+        );
+        await promise;
     };
 
     //READ IMAGE ONE
@@ -216,7 +229,7 @@ export default function () {
                     <div>
                         <p>Select Images</p>
                         <p>Image 1:</p>
-                        <div id="selectImages">
+                        <div className="selectImages">
                             <input type="file" onChange={readFileOne}></input>
                             {imgOne && (
                                 <div id="editorThum">
@@ -228,7 +241,7 @@ export default function () {
                         {plus && (
                             <>
                                 <p>Image 2:</p>
-                                <div id="selectImages">
+                                <div className="selectImages">
                                     <input
                                         type="file"
                                         onChange={readFileTwo}
@@ -268,7 +281,7 @@ export default function () {
                             name="algorithm"
                             id="algorithmInput"
                             onChange={changeAlgo}
-                            defaultValue="Plane"
+                            defaultValue="Destructive"
                         >
                             <option value="Plane" disabled>
                                 Select...
