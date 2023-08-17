@@ -1,0 +1,604 @@
+body {
+    box-sizing: border-box;
+    font-family: "Share Tech Mono", monospace;
+    background-color: rgb(0, 0, 0);
+    /* color: rgb(171, 255, 171); */
+    color: rgb(249, 138, 138);
+    z-index: -1;
+    /* FONTS
+    font-family: "Bungee Hairline", cursive;
+    font-family: "IBM Plex Mono", monospace;
+    font-family: "Share Tech Mono", monospace;
+    font-family: "Stalinist One", cursive;
+     */
+}
+a {
+    text-decoration: none;
+    color: rgb(170, 218, 170);
+}
+
+button {
+    width: 80px;
+    padding: 5px;
+    background-color: #000000;
+    color: rgb(170, 218, 170);
+    border: 1px solid rgb(84, 84, 84);
+    border-radius: 4px;
+}
+button:hover {
+    color: black;
+    background-color: rgb(229, 237, 226);
+    border: 1px solid rgb(0, 0, 0);
+}
+li {
+    list-style-type: none;
+}
+#header {
+    color: rgb(142, 255, 142);
+    background-color: rgb(0, 0, 0);
+    padding-left: 15px;
+    padding-right: 20px;
+    border-bottom: 1px solid rgb(33, 33, 33);
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.connectWallet {
+    width: 120px;
+
+    background-color: #66b367;
+    color: #000000;
+    cursor: pointer;
+}
+.accountButton {
+    width: 120px;
+    background-color: #70ff70;
+    color: #000000;
+    cursor: pointer;
+    overflow: hidden;
+}
+#settings {
+    position: absolute;
+    color: rgb(212, 117, 117);
+    background-color: black;
+    border: 1px solid gray;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    font-size: 13px;
+    padding: 10px;
+}
+#settings p:hover {
+    color: black;
+    background-color: rgb(229, 237, 226);
+    cursor: pointer;
+}
+#body {
+    background-color: black;
+    display: flex;
+    justify-content: flex-start;
+    height: 100%;
+}
+
+#sideBar {
+    margin-left: 10px;
+    position: fixed;
+    /* color: rgb(75, 255, 75);  */
+    color: rgb(252, 173, 173);
+    background-color: rgba(86, 86, 86, 0.25);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 27px;
+    height: 100%;
+    overflow: hidden;
+    transition: 300ms;
+    /* transition-timing-function: linear; */
+}
+#sideBar:hover {
+    width: 200px;
+    padding: 20px;
+    background-color: #000000;
+    border-right: 1px solid rgb(145, 154, 145);
+    /* box-shadow: 500px 12px 30px 700px rgba(0, 0, 0, 0.4); */
+}
+#sideBar p {
+    padding-left: 10px;
+    color: rgb(255, 149, 149);
+}
+
+#sideBar div {
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgb(145, 154, 145);
+    height: 70px;
+}
+#sideBar div:hover {
+    background-color: #525252;
+    color: #000000;
+}
+.sideBarLink {
+    display: flex;
+    flex-direction: row;
+}
+
+#home {
+    padding-left: 100px;
+    padding-right: 100px;
+    display: flex;
+    flex-direction: column;
+}
+#home #title {
+    padding: 0;
+    color: rgb(242, 108, 108);
+    height: 300px;
+    font-size: 60px;
+    /* background-color: #000000; */
+    margin-bottom: 100px;
+}
+
+#home .section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 20px;
+    padding: 20px;
+    color: black;
+    background-color: rgb(197, 133, 133);
+    height: 500px;
+    margin-bottom: 100px;
+}
+#home .section div {
+    z-index: 0;
+}
+#frontImage {
+    position: absolute;
+    top: 250px;
+    right: 60px;
+    z-index: 0;
+}
+/* #line {
+    background-color: rgb(197, 133, 133);
+    width: 90%;
+    height: 3px;
+    position: absolute;
+} */
+.section2 {
+    width: 105%;
+    border-top: 2px solid rgb(142, 255, 142);
+    border-left: 2px solid rgb(142, 255, 142);
+    /* color: #9ff99f; */
+    color: rgb(142, 255, 142);
+    margin-bottom: 100px;
+    display: flex;
+    flex-direction: row;
+}
+.section2 img {
+    margin-left: 50px;
+    margin-top: 50px;
+    width: 700px;
+    z-index: 1;
+}
+.section2 #text {
+    width: 400px;
+    margin-top: 50px;
+    margin-left: 50px;
+}
+
+.section2 #lists {
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+#lists {
+    display: flex;
+    flex-direction: row;
+}
+
+#home .section3 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: baseline;
+    font-size: 20px;
+    padding: 20px;
+    color: black;
+    background-color: rgb(64, 64, 64);
+    height: 100px;
+    margin-bottom: 100px;
+}
+#home .section3 p {
+    color: rgb(255, 255, 255);
+    z-index: 2;
+}
+#home .section3 img {
+    position: absolute;
+
+    left: 50px;
+}
+
+#home .section4 {
+    margin-top: 400px;
+    margin-bottom: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    right: -100px;
+}
+#copyright {
+    font-size: 18px;
+    align-self: start;
+    bottom: 0;
+    color: rgb(57, 37, 105);
+    margin-left: -60px;
+    z-index: 2;
+}
+#footerImg {
+    width: 666px;
+
+    left: 50px;
+}
+
+#plus {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    background-color: rgb(79, 86, 79);
+    font-size: 30px;
+    cursor: pointer;
+}
+#imagePanel {
+    width: 200px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-left: 1px solid rgb(33, 33, 33);
+    justify-self: flex-end;
+    padding-left: 20px;
+}
+#storeImg {
+    position: absolute;
+    bottom: 30px;
+}
+
+#storeImg button {
+    margin-left: 10px;
+}
+#info {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #00000043;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#infoInput {
+    padding: 20px;
+    background-color: #000000;
+    display: grid;
+    grid-template-columns: 1.5fr 2fr;
+    grid-template-rows: 1fr 2fr 1fr;
+}
+#note {
+    font-size: 10px;
+    align-self: flex-end;
+}
+#infoInput input,
+textarea {
+    margin-top: 10px;
+    background-color: #000000;
+    border: 1px solid rgb(197, 248, 197);
+    color: rgb(147, 250, 147);
+    font-family: "Share Tech Mono", monospace;
+}
+#infoInput input,
+textarea:focus {
+    outline: none;
+}
+#infoInput input {
+    text-align: center;
+    height: 30px;
+    font-size: 17px;
+}
+
+#info_buttons {
+    margin-top: 20px;
+}
+
+#meta_text_div {
+    width: 180px;
+    margin-left: 50px;
+    margin-right: 5px;
+}
+#meta_text {
+    font-size: 9px;
+    width: 160px;
+    border-color: rgb(147, 250, 147);
+    border-style: solid;
+    margin-bottom: 15px;
+}
+#imgEditor {
+    width: max-content;
+    display: flex;
+    flex-direction: row;
+}
+#editorThum {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+}
+#editorThum p {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    width: 8px;
+    height: 8px;
+    background-color: rgb(79, 86, 79);
+    padding: 2px;
+    border-radius: 50%;
+    font-size: 8px;
+    position: absolute;
+    right: -15px;
+    top: -20px;
+    cursor: pointer;
+}
+
+#thumPreview {
+    border: 1px solid rgb(137, 173, 137);
+    width: 50px;
+    height: auto;
+    object-fit: cover;
+}
+
+#imgPreview {
+    margin-top: 0;
+    margin-left: 20px;
+    display: flex;
+    justify-content: center;
+    width: 500px;
+    /* min-height: 777px; */
+    object-fit: scale-down;
+    overflow: hidden;
+    /* justify-self: center; */
+}
+#controlPanel {
+    width: 200px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid rgb(33, 33, 33);
+    justify-self: flex-end;
+    padding-left: 20px;
+}
+#controlPanel select {
+    width: 160px;
+}
+#controlPanel button {
+    margin-top: 20px;
+    margin-right: 20px;
+    width: 70px;
+}
+
+/* RANGE INPUTS STYLE */
+input[type="range"] {
+    height: 29px;
+    -webkit-appearance: none;
+    margin: 10px 0;
+    width: 100%;
+    background-color: #000000;
+}
+input[type="range"]:focus {
+    outline: none;
+}
+input[type="range"]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 3px;
+    cursor: pointer;
+    box-shadow: 0px 0px 0px #50555c;
+    background: #70ff70;
+    border-radius: 27px;
+    border: 0px solid #000000;
+}
+input[type="range"]::-webkit-slider-thumb {
+    box-shadow: 0px 0px 0px #008700;
+    border: 0px solid #66b367;
+    height: 10px;
+    width: 3px;
+    background: #ffffff;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -4px;
+}
+
+#gallery {
+    color: rgb(250, 119, 119);
+    width: auto;
+    display: flex;
+    width: 80%;
+    flex-direction: column;
+    margin-left: 270px;
+}
+#gallery nav {
+    color: #000000;
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(171, 128, 128);
+}
+
+#gallery nav div {
+    width: 200px;
+    border-right: 1px solid black;
+    padding-left: 10px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#gallery nav div select {
+    padding-left: 10px;
+    margin-left: 10px;
+    background-color: transparent;
+    color: rgb(99, 97, 97);
+}
+
+#gallery nav div:hover {
+    background-color: #000000;
+    color: rgb(171, 128, 128);
+    cursor: pointer;
+}
+
+#nfts {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#displayNft {
+    width: 250px;
+    height: auto;
+    margin-right: 50px;
+    margin-bottom: 50px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid rgb(75, 75, 75);
+    cursor: pointer;
+}
+#displayNft img {
+    width: 250px;
+    height: 250px;
+    object-fit: scale-down;
+}
+#displayNft .description {
+    font-size: 12px;
+}
+
+#mint {
+    color: #000000;
+    font-size: 11px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+}
+.minted {
+    background-color: #70ff70;
+}
+.notMinted {
+    background-color: crimson;
+}
+
+#singleNft {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+}
+#singleNft label {
+    color: black;
+    background-color: rgb(171, 255, 171);
+    font-size: 12px;
+    width: 200px;
+}
+#singleNft p {
+    color: rgb(171, 255, 171);
+}
+
+#singleImg {
+    width: 550px;
+    height: 550px;
+    border: 1px solid rgb(75, 75, 75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#singleNft img {
+    width: 500px;
+    height: 500px;
+    object-fit: scale-down;
+}
+#singleInfo {
+    margin-left: 100px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 200px;
+    padding-right: 40px;
+}
+#yes {
+    color: rgb(170, 218, 170);
+}
+#no {
+    color: rgb(212, 117, 117);
+}
+#copyToClipboard {
+    cursor: pointer;
+}
+.hidden {
+    position: absolute;
+    visibility: hidden;
+}
+.hidden:hover {
+    visibility: visible;
+}
+
+#loading {
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    background-color: #0000007b;
+    color: rgb(190, 254, 177);
+}
+#turn {
+    animation-name: rotate;
+    animation-duration: 700ms;
+    animation-iteration-count: infinite;
+
+    width: 70px;
+    height: 70px;
+    border: 10px solid rgb(190, 254, 177);
+    margin-bottom: 20px;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(90deg);
+    }
+}
+#congratulations {
+    z-index: 2;
+    background-color: #80ec92;
+}
+#congratulations p {
+    color: #000000;
+}
+#transactionLink {
+    color: red;
+    background-color: black;
+}
+

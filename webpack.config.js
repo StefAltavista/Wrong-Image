@@ -1,38 +1,42 @@
 const path = require("path");
-
+const HTMLwebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-
-module.exports = () => ({
+module.exports = {
     entry: [
-        "@babel/polyfill",
-        path.join(__dirname, "client", "style.css"),
-        path.join(__dirname, "client", "src", "start.js"),
+        "./client/src/start.js",
+        path.join(__dirname, "client", "css", "style.css"),
     ],
     output: {
-        path: path.join(__dirname, "client", "public"),
+        path: path.join(__dirname, "/dist"),
         filename: "bundle.js",
     },
-    performance: {
-        hints: false,
-    },
+    plugins: [
+        new HTMLwebpackPlugin({ template: "./client/src/index.html" }),
+        new MiniCssExtractPlugin(),
+    ],
     devServer: {
-        contentBase: path.join(__dirname, "client", "public"),
+        static: path.join(__dirname, "client"),
         proxy: {
             "/": {
-                target: "http://localhost:5001",
+                target: "http://localhost:5005",
             },
-            "/socket.io": {
-                target: "http://localhost:5001",
-                ws: true,
-            },
+            secure: false, // had an expression which was resolving to true
+            changeOrigin: true,
         },
         port: "5000",
     },
+
     module: {
         rules: [
             {
-                test: /\.js$/,
-                loader: "babel-loader",
+                test: /.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader",
+                    options: {
+                        presets: ["@babel/preset-env", "@babel/preset-react"],
+                    },
+                },
             },
             {
                 test: /\.css$/i,
@@ -46,19 +50,6 @@ module.exports = () => ({
                     },
                 ],
             },
-            {
-                test: /\.tsx?$/,
-                use: "ts-loader",
-                exclude: /node_modules/,
-            },
         ],
     },
-    resolve: {
-        extensions: [".tsx", ".ts", ".js"],
-    },
-    plugins: [
-        new MiniCssExtractPlugin({
-            filename: "bundle.css",
-        }),
-    ],
-});
+};

@@ -1,3 +1,4 @@
+import React from "react";
 import ImgEditor from "./components/imgEditor";
 import SideBar from "./components/sideBar";
 import WalletGallery from "./components/walletGallery.js";

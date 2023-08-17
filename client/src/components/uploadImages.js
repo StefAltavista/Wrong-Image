@@ -1,3 +1,5 @@
+import React from "react";
+
 import { useState } from "react";
 export default function uploadImages() {
     const [images, setImages] = useState(1);
